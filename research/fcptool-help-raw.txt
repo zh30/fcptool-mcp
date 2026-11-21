@@ -1,0 +1,279 @@
+### (root)
+OVERVIEW: A tool for inspecting and modifying Final Cut Pro libraries
+
+USAGE: fcptool [--version] [--verbose] [--json] <subcommand>
+
+OPTIONS:
+  --version               Show the tool version.
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+SUBCOMMANDS:
+  library                 Commands for managing libraries
+  event                   Commands for managing events
+  xml                     Commands for handling fcpxml and fcpxmld documents
+  metadata-view           Commands for inspecting metadata view sets
+
+  See 'fcptool help <subcommand>' for detailed help.
+
+### library
+OVERVIEW: Commands for managing libraries
+
+USAGE: fcptool library <subcommand>
+
+OPTIONS:
+  -h, --help              Show help information.
+
+SUBCOMMANDS:
+  info                    Information about a library
+  new                     Create a new library
+  settings                Display or update library settings
+  update                  Updates a library to the current catalog version
+
+  See 'fcptool help library <subcommand>' for detailed help.
+
+### library info
+OVERVIEW: Information about a library
+
+USAGE: fcptool library info <path> [--verbose] [--json]
+
+ARGUMENTS:
+  <path>                  Path to the library
+
+OPTIONS:
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### library new
+OVERVIEW: Create a new library
+
+USAGE: fcptool library new <path> [--verbose] [--json]
+
+ARGUMENTS:
+  <path>                  Location for new library
+
+OPTIONS:
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### library settings
+OVERVIEW: Display or update library settings
+
+USAGE: fcptool library settings <path> [--update] [--color-processing-mode <color-processing-mode>] [--media-location <media-location>] [--cache-location <cache-location>] [--motion-content-location <motion-content-location>] [--backup-policy <backup-policy>] [--verbose] [--json]
+
+ARGUMENTS:
+  <path>                  Path to the library
+
+OPTIONS:
+  -u, --update            Automatically update the library when it is opened
+  --color-processing-mode <color-processing-mode>
+                          Color processing mode: standard-gamut-sdr |
+                          wide-gamut-hdr | legacy-wide-gamut
+  --media-location <media-location>
+                          Media location: project | <path>
+  --cache-location <cache-location>
+                          Cache location: project | <path>
+  --motion-content-location <motion-content-location>
+                          Motion content location: project | templates
+  --backup-policy <backup-policy>
+                          Backup policy: none | default | <path>
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### library update
+OVERVIEW: Updates a library to the current catalog version
+
+USAGE: fcptool library update <path> [--verbose] [--json]
+
+ARGUMENTS:
+  <path>                  Path to the library
+
+OPTIONS:
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### event
+OVERVIEW: Commands for managing events
+
+USAGE: fcptool event <subcommand>
+
+OPTIONS:
+  -h, --help              Show help information.
+
+SUBCOMMANDS:
+  list                    List the events in a library
+  new                     Create a new library event
+  copy                    Copy an event from one library to another
+
+  See 'fcptool help event <subcommand>' for detailed help.
+
+### event list
+OVERVIEW: List the events in a library
+
+USAGE: fcptool event list <path> [--update] [--verbose] [--json] [--no-headers]
+
+ARGUMENTS:
+  <path>                  Argument to describe library location
+
+OPTIONS:
+  -u, --update            Automatically update the library when it is opened
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  --no-headers            Omit table headers and separators
+  -h, --help              Show help information.
+
+### event new
+OVERVIEW: Create a new library event
+
+USAGE: fcptool event new <path> [--name <name>] [--update] [--verbose] [--json]
+
+ARGUMENTS:
+  <path>                  Argument to describe library location
+
+OPTIONS:
+  --name <name>           The new event's name
+  -u, --update            Automatically update the library when it is opened
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### event copy
+OVERVIEW: Copy an event from one library to another
+
+USAGE: fcptool event copy --name <name> --from <from> --to <to> [--update] [--without-media <without-media>] [--include-original-media <include-original-media>] [--include-optimized-media <include-optimized-media>] [--include-proxy-media <include-proxy-media>] [--copy-external-media <copy-external-media>] [--verbose] [--json]
+
+OPTIONS:
+  --name <name>           The event's name
+  --from <from>           The library to copy from
+  --to <to>               The library to copy to
+  -u, --update            Automatically update the library when it is opened
+  --without-media <without-media>
+                          Copy without any media; some clips may appear as
+                          missing in the destination: true | false
+  --include-original-media <include-original-media>
+                          Include original media: true | false
+  --include-optimized-media <include-optimized-media>
+                          Include optimized media: true | false
+  --include-proxy-media <include-proxy-media>
+                          Include proxy media: true | false
+  --copy-external-media <copy-external-media>
+                          Copy media stored in external locations into the
+                          destination library: true | false
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### xml
+OVERVIEW: Commands for handling fcpxml and fcpxmld documents
+
+USAGE: fcptool xml <subcommand>
+
+OPTIONS:
+  -h, --help              Show help information.
+
+SUBCOMMANDS:
+  validate                Validate an FCPXML document against its DTD
+  import                  Import FCPXML or FCPXMLD into a library
+  export                  Export FCPXML or FCPXMLD from a library
+  versions                List the supported FCPXML DTD versions for export
+
+  See 'fcptool help xml <subcommand>' for detailed help.
+
+### xml validate
+OVERVIEW: Validate an FCPXML document against its DTD
+
+USAGE: fcptool xml validate <path> [--verbose] [--json]
+
+ARGUMENTS:
+  <path>                  Path to the .fcpxml file or .fcpxmld bundle to
+                          validate
+
+OPTIONS:
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### xml import
+OVERVIEW: Import FCPXML or FCPXMLD into a library
+
+USAGE: fcptool xml import <fcpxml-path> [--new <new>] [--into <into>] [--conflict-resolution <conflict-resolution>] [--update] [--verbose] [--json]
+
+ARGUMENTS:
+  <fcpxml-path>           Path to the FCPXML file or .fcpxmld bundle to import
+
+OPTIONS:
+  --new <new>             Create a new library at this path
+  --into <into>           Import into an existing library at this path
+  --conflict-resolution <conflict-resolution>
+                          How to resolve a conflict when the import finds an
+                          incoming item that matches an existing one but
+                          differs: cancel, keep-both, replace. Defaults to
+                          cancel (abort the import, leaving the library
+                          unchanged). (values: cancel, keep-both, replace;
+                          default: cancel)
+  -u, --update            Automatically update the library when it is opened
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### xml export
+OVERVIEW: Export FCPXML or FCPXMLD from a library
+
+USAGE: fcptool xml export <library-path> --output <output> [--dtd-version <dtd-version>] [--metadata-view <metadata-view>] [--update] [--verbose] [--json]
+
+ARGUMENTS:
+  <library-path>          Path to the library
+
+OPTIONS:
+  --output <output>       Destination path for the exported .fcpxml or .fcpxmld
+                          file
+  --dtd-version <dtd-version>
+                          FCPXML DTD version (1.15, 1.14, 1.13). Defaults to
+                          1.15.
+  --metadata-view <metadata-view>
+                          Metadata view set whose fields are written to the
+                          export (see `fcptool metadata-view list`). If
+                          omitted, no metadata view is applied.
+  -u, --update            Automatically update the library when it is opened
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### xml versions
+OVERVIEW: List the supported FCPXML DTD versions for export
+
+USAGE: fcptool xml versions [--verbose] [--json]
+
+OPTIONS:
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  -h, --help              Show help information.
+
+### metadata-view
+OVERVIEW: Commands for inspecting metadata view sets
+
+USAGE: fcptool metadata-view <subcommand>
+
+OPTIONS:
+  -h, --help              Show help information.
+
+SUBCOMMANDS:
+  list                    List the available metadata view sets
+
+  See 'fcptool help metadata-view <subcommand>' for detailed help.
+
+### metadata-view list
+OVERVIEW: List the available metadata view sets
+
+USAGE: fcptool metadata-view list [--verbose] [--json] [--no-headers]
+
+OPTIONS:
+  -v, --verbose           Show status messages, warnings, and progress on stderr
+  --json                  Output results as JSON
+  --no-headers            Omit table headers and separators
+  -h, --help              Show help information.

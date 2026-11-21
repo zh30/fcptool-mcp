@@ -1,0 +1,37 @@
+{
+  "name": "fcptool-mcp",
+  "version": "0.1.0",
+  "description": "High-performance local MCP server wrapping Apple's Final Cut Pro 13 fcptool CLI",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "fcptool-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "docs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "darwin"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && chmod +x dist/index.js",
+    "dev": "node src/index.ts",
+    "test": "npm run build && node --test test/",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "fast-xml-parser": "^5.12.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
